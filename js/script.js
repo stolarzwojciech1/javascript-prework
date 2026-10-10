@@ -1,62 +1,70 @@
-// Funkcja zamieniająca ID (liczbę lub tekst z promptu) na nazwę ruchu
-function getMoveName(argMoveId) {
-  if (argMoveId == 1) {
+
+function getMoveName(argMoveId){
+  if(argMoveId == 1){
     return 'kamień';
-  } else if (argMoveId == 2) {
+  } 
+  else if(argMoveId == 2){
     return 'papier';
-  } else if (argMoveId == 3) {
+  }
+  else if(argMoveId == 3){
     return 'nożyce';
-  } else {
+  }
+  
+  else {
     printMessage('Nie znam ruchu o id ' + argMoveId + '.');
     return 'nieznany ruch';
   }
+
 }
 
-// Funkcja losująca ruch komputera (zwraca od razu nazwę ruchu)
-function getComputerMove() {
+function argComputerMove() {
   let randomNumber = Math.floor(Math.random() * 3 + 1);
-  
-  if (randomNumber == 1) return 'kamień';
-  if (randomNumber == 2) return 'papier';
-  if (randomNumber == 3) return 'nożyce';
+  let computerMove = ''; // <--- Deklaracja zmiennej na początku
+
+  if (randomNumber == 1) {
+    computerMove = 'kamień';
+  } else if (randomNumber == 2) {
+    computerMove = 'papier';
+  } else if (randomNumber == 3) {
+    computerMove = 'nożyce';
+  }
+ 
+  return computerMove;
+}
+ printMessage('Mój ruch to: ' + argComputerMove());
+
+
+
+let argMoveId = prompt('Wybierz swój ruch! 1: kamień, 2: papier, 3: nożyce.');
+
+printMessage('Twój ruch to: ' + getMoveName(argMoveId));  
+
+
+
+const ruchKomputera = argComputerMove(); 
+const ruchGracza = getMoveName(argMoveId); 
+
+function wynik(ruchKomputera, ruchGracza) {
+
+if( ruchKomputera == 'kamień' && ruchGracza == 'papier'){
+  printMessage('Ty wygrywasz!');
+}
+else if( ruchKomputera == 'nożyce' && ruchGracza == 'kamień'){
+  printMessage('Ty wygrywasz!');
+}
+else if( ruchKomputera == 'papier' && ruchGracza == 'nożyce'){
+  printMessage('Ty wygrywasz!');
+}
+else if( ruchKomputera == ruchGracza){
+  printMessage('Remis!');
+}
+else{
+  printMessage('przegrana!');
 }
 
-// Funkcja sprawdzająca wynik gry
-function wyswietlWynik(ruchKomputera, ruchGracza) {
-  if (ruchGracza === 'nieznany ruch') {
-    printMessage('Nie można rozstrzygnąć gry z powodu błędnego ruchu!');
-    return;
-  }
-
-  if (ruchKomputera === ruchGracza) {
-    printMessage('Remis!');
-  } else if (
-    (ruchKomputera == 'kamień' && ruchGracza == 'papier') ||
-    (ruchKomputera == 'nożyce' && ruchGracza == 'kamień') ||
-    (ruchKomputera == 'papier' && ruchGracza == 'nożyce')
-  ) {
-    printMessage('Ty wygrywasz!');
-  } else {
-    printMessage('Przegrałeś! Komputer górą.');
-  }
 }
 
-// --- GŁÓWNA LOGIKA GRY ---
 
-// 1. Pobieramy ruch gracza
-let playerInput = prompt('Wybierz swój ruch! 1: kamień, 2: papier, 3: nożyce.');
-console.log('Gracz wpisał: ' + playerInput);
+wynik(ruchKomputera, ruchGracza);
 
-const ruchGracza = getMoveName(playerInput);
-printMessage('Twój ruch to: ' + ruchGracza);  
 
-// 2. Losujemy ruch komputera (wywołujemy funkcję TYLKO RAZ)
-const ruchKomputera = getComputerMove(); 
-printMessage('Mój ruch to: ' + ruchKomputera);
-
-// 3. Rozstrzygamy wynik
-wyswietlWynik(ruchKomputera, ruchGracza);
-
-// Logi pomocnicze w konsoli
-console.log('Ruch komputera: ' + ruchKomputera);
-console.log('Ruch gracza: ' + ruchGracza);
