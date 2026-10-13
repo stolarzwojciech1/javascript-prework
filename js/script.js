@@ -1,3 +1,6 @@
+function playGame(x){
+
+  let argMoveId = x;
 
 function getMoveName(argMoveId){
   if(argMoveId == 1){
@@ -31,18 +34,24 @@ function argComputerMove() {
  
   return computerMove;
 }
- printMessage('Mój ruch to: ' + argComputerMove());
+ 
 
 
 
-let argMoveId = prompt('Wybierz swój ruch! 1: kamień, 2: papier, 3: nożyce.');
+/* let argMoveId = prompt('Wybierz swój ruch! 1: kamień, 2: papier, 3: nożyce.'); */
 
-printMessage('Twój ruch to: ' + getMoveName(argMoveId));  
 
 
 
 const ruchKomputera = argComputerMove(); 
-const ruchGracza = getMoveName(argMoveId); 
+const ruchGracza = getMoveName(argMoveId);
+
+
+
+printMessage('Mój ruch to: ' + ruchKomputera);
+
+printMessage('Twój ruch to: ' + ruchGracza);  
+
 
 function wynik(ruchKomputera, ruchGracza) {
 
@@ -68,3 +77,15 @@ else{
 wynik(ruchKomputera, ruchGracza);
 
 
+}
+
+
+document.getElementById('play-rock').addEventListener('click', function() {
+  playGame(1);
+});
+document.getElementById('play-paper').addEventListener('click', function() {
+  playGame(2);
+});
+document.getElementById('play-scissors').addEventListener('click', function() {
+  playGame(3);
+}); 
