@@ -2,7 +2,8 @@ function playGame(x){
 
   let argMoveId = x;
 
-function getMoveName(argMoveId){
+  const getMoveName = function(argMoveId){
+ 
   if(argMoveId == 1){
     return 'kamień';
   } 
@@ -20,7 +21,7 @@ function getMoveName(argMoveId){
 
 }
 
-function argComputerMove() {
+const argComputerMove = function(){
   let randomNumber = Math.floor(Math.random() * 3 + 1);
   let computerMove = ''; // <--- Deklaracja zmiennej na początku
 
@@ -52,8 +53,8 @@ printMessage('Mój ruch to: ' + ruchKomputera);
 
 printMessage('Twój ruch to: ' + ruchGracza);  
 
+const wynik = function(ruchKomputera, ruchGracza){
 
-function wynik(ruchKomputera, ruchGracza) {
 
 if( ruchKomputera == 'kamień' && ruchGracza == 'papier'){
   printMessage('Ty wygrywasz!');
